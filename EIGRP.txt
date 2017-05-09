@@ -1,0 +1,27 @@
+     
+     ## Cisco EIGRP Configuration ##
+     
+     EIGRP basics / cheatsheet
+          - Cisco recommends setting the same reference bandwidth on all routers
+          - EIGRP has to has the same config for AS number and K values
+          
+  EIGRP vs OSPF
+  --> interf primary IP in the same subnet  // EIGRP y OSPF y
+  --> Passive int not getting into topo / routing table  // EIGRP y OSPF y
+  --> Same Area  // EIGRP n/a OSPF y
+  --> Hello / Dead mismatch prevents neighbourship  // EIGRP n OSPF y
+  --> Router ID have to be uniqe  // EIGRP n OSPF y
+  --> MTU must match  // EIGRP n OSPF y
+  --> K values must match  // EIGRP y OSPF n/a
+  --> Same ASn (EIGRP) or Process ID (OSPF)  // EIGRP n OSPF y
+  
+  Default metric:
+  bandwidth, delay, load, reliability, MTU
+  
+  router eigrp 50100
+  no auto
+  network 10.0.1.0 0.0.0.255
+  network 10.0.2.0 0.0.0.255
+  redistribute static
+  redistribute connected
+  default metric 1500 100 255 1 1500
