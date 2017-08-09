@@ -1,4 +1,10 @@
-Code Red Example
+
+###########################################
+----- >> CyberWars/CZ << ---------- 
+// Estonia
+
+>>>>>------ Code Red (example) -------<<<<<<
+###########################################
 
 i. Marking traffic
 Router(config)#class−map match−any http−hacks
@@ -31,29 +37,35 @@ Router(config)#interface serial 0/0
 Router(config−if)#service−policy input drop−inbound−http−hacks 
 
 
-
-
 vpdn enable
 vpdn-group 1
 accept-dialin
 protocol pptp
 virtual-template 1
 !
-ip local pool netcraftsmen 192.168.1.1 - 192.168.1.10
+ip local pool DHCPpool1 192.168.1.1 - 192.168.1.10
 !
 interface virtual-template 1
 encapsulation ppp
-peer default ip address pool netcraftsmen
+peer default ip address pool DHCPpool1
 ip unnumbered FastEthernet4
 ppp encrypt mppe auto
 ppp authentication pap chap
 
 
+####################################################################
+-----------------CISCO SINK HOLE HOWTO-----------------------------
+####################################################################
 
------------------SINK HOLE-----------------------------
+
 interface Null0
 no ip unreachables
-!When packet is dropped, an Internet Control Message Protocol (ICMP) unreachable message is !sent back to the source. So it is recommended that ICMP unreachable message is disabled.
+!When packet is dropped, 
+!an Internet Control Message Protocol (ICMP) 
+!unreachable message is sent back to the source. 
+!So it is recommended that ICMP unreachable message is disabled.
+!
+!SINKHOLE-HOWTO
 !
 router bgp 65535
 neighbor IBGP peer-group
@@ -80,14 +92,19 @@ set ip next-hop 192.0.2.1
 !
 route-map STATIC_TO_BGP deny 20
 
-When we know that some server, for example 10.10.10.10, under attack, we would put in the blackhole route on the trigger router and propagate to all edge routers which would drop packets at the edge of the network.
+!When we know that some server, 
+!for example 10.10.10.10, under attack, 
+!we would put in the blackhole route on the trigger router 
+!and propagate to all edge routers which would drop packets at the edge of the network.
+!
 !
 ip route 10.10.10.10 255.255.255.255 null0 tag 100
 
-Back scatter analysis could be use to trace back the source of the DDOS attack.
-Remove the no ip unreachable from the null0 interface on all the edge routers.
-Then from the "sinkhole" router:
-Add new route-map entry, to propagate self-originated "interesting" routes.
+!Back scatter analysis could be use to trace back the source of the DDOS attack.
+!Remove the no ip unreachable from the null0 interface on all the edge routers.
+!Then from the "sinkhole" router:
+!Add new route-map entry, to propagate self-originated "interesting" routes.
+!
 !
 route-map STATIC_TO_BGP permit 15
 match tag 200
@@ -96,7 +113,10 @@ set origin igp
 set community no-export
 !
 ip route 20.0.0.0 255.0.0.0 Null0 tag 200
-!Network 20.0.0.0/8 is suspected to be the source of the attack. All ICMP unreachable !messages from the edge routers will be diverted to the sinkhole router for analysis.
+!
+!Network 20.0.0.0/8 is suspected to be the source of the attack. 
+!All ICMP unreachable !messages from the edge routers 
+!will be diverted to the sinkhole router for analysis.
 !
 ip access-list extended UNREACHABLES
 permit icmp any any unreachable log
@@ -104,230 +124,12 @@ permit ip any any
 !
 interface WAN
 ip access-group UNREACHABLES in
+!
 
-If the rate is big, you might not be able to see all logging line. To tune the ACL too log every hit:
+!If the rate is big, you might not be able to see 
+!all logging line. 
+!To tune the ACL too log every hit:
+
+!
 ip access-list log-update threshold 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-DNS Application Inspection Configuration
-
-
-DNS application inspection utilizes the Modular Policy Framework (MPF) for configuration. To configure application inspection, administrators may construct an inspection policy through the configuration of inspect class maps and inspect policy maps, which are applied via a global or an interface service policy. The following example demonstrates configuration of this feature.
-
 !
-class-map inspection_default
-match default-inspection-traffic
-!
-policy-map type inspect dns preset_dns_map
-parameters
-!
-!– Enable dns-guard to verify that DNS query and response transaction IDs match and only one ! DNS response is allowed through the firewall for each query.
-!
-dns-guard
-!
-!– Enable id-randomization to generate unpredictable DNS transaction IDs in !DNS messages and protect DNS servers and resolvers with poor randomization of !DNS transaction IDs.
-!
-id-randomization
-!
-!– Enable a maximum message length to help defeat DNS amplification attacks. Note: This is the ! default configuration and value based on RFC 1035.
-!
-message-length maximum 512
-!
-!– Enable id-mismatch to count DNS transaction ID mismatches within a specified period of time !and generate a syslog when the defined threshold has been reached.
-!
-id-mismatch count 10 duration 2 action log
-exit
-!
-!– Check for DNS query messages with the recursion desired (RD) flag set in the DNS header !and drop those packets to avoid being used as a recursive resolver.
-
-match header-flag RD
-drop
-!
-policy-map global_policy
-class inspection_default
-inspect dns preset_dns_map
-!
-service-policy global_policy global
-
-
-DNS Attack Identification
-
-
-DNS Service Policy Identification
-When the DNS guard, DNS ID randomization, DNS ID mismatch, and DNS protocol enforcement functions for the DNS application inspection feature are enabled, the show service-policy inspect command will identify the number of DNS packets inspected or dropped by these functions and this feature. Example output for show service-policy inspect dns follows
-
-!– Output for service-policy applied globally
-!
-firewall# show service-policy inspect dns
-
-Global policy:
-Service-policy: global_policy
-Class-map: inspection_default
-Inspect: dns preset_dns_map, packet 37841, drop 0, reset-drop 0
-message-length maximum 512, drop 0
-dns-guard, count 21691
-protocol-enforcement, drop 0
-nat-rewrite, count 0
-id-randomization, count 21856
-id-mismatch count 10 duration 2, log 2
-firewall#
-
-!– Output for service-policy applied per interface
-!
-firewall# show service-policy inspect dns
-
-Interface outside:
-Service-policy: global_policy
-Class-map: inspection_default
-Inspect: dns preset_dns_map, packet 4923, drop 1544, reset-drop 0
-message-length maximum 512, drop 39
-dns-guard, count 2147
-protocol-enforcement, drop 542
-nat-rewrite, count 0
-id-randomization, count 2220
-id-mismatch count 10 duration 2, log 1
-
-Interface inside:
-Service-policy: global_policy
-Class-map: inspection_default
-Inspect: dns preset_dns_map, packet 240, drop 0, reset-drop 0
-message-length maximum 512, drop 0
-dns-guard, count 88
-protocol-enforcement, drop 0
-nat-rewrite, count 0
-id-randomization, count 116
-id-mismatch count 10 duration 2, log 0
-firewall#
-Syslog Identification
-
-In the following example, the show logging | grep regex command extracts syslog messages from the logging buffer on the firewall. These messages provide additional information about denied packets. It is possible to use different regular expressions with the grep keyword to search for specific data in the logged messages.
-
-Firewall syslog message 410002 will be generated when the firewall detects a high rate of DNS responses with a mismatched DNS transaction ID. The threshold for this function is set by the id-mismatch parameters submode command for policy-map type inspect dns. Additional information about this syslog message is available in Cisco Security Appliance System Log Message - 410002.
-
-Firewall syslog message 106007 will be generated when the firewall detects that a DNS response message has already been received for a DNS query message and the connection entry has been torn down by the DNS guard function. This syslog message indicates that the DNS response message received has been denied. Additional information about this syslog message is available in Cisco Security Appliance System Log Message - 106007.
-
-Additional information about regular expression syntax is available in Using the Command Line Interface.
-
-
-      firewall#Ashow logging | grep (106007|410002)
-      Mar 31 2008 00:29:18: %ASA-2-410002: Dropped 189 DNS responses with
-        mis-matched id in the past 10 second(s): from outside:192.0.2.2/3917
-        to inside:192.168.60.1/53
-      Mar 31 2008 00:29:13: %ASA-2-106007: Deny inbound UDP from 192.0.2.2/2875
-        to 192.168.60.1/53 due to DNS Response.
-      firewall#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Common Access list for Small office Cisco Routers
-
-Below are the commonly used access list to prevent virus attack on your Cisco Router.I have used this access-list to prevent virus attacks on SOHO routers as small offices and homes which is not having Cisco Firewalls.
-
-access-list 129 deny   udp any any eq 135
-access-list 129 deny   tcp any any eq 135
-access-list 129 deny   tcp any any eq 137
-access-list 129 deny   tcp any any eq 138
-access-list 129 deny   tcp any any eq 139
-access-list 129 deny   udp any any eq 445
-access-list 129 deny   tcp any any eq 445
-access-list 129 deny   tcp any any eq 777
-access-list 129 deny   tcp any any eq 778
-access-list 129 deny   tcp any any eq 707
-access-list 129 deny   udp any any eq 666
-access-list 129 deny   tcp any any eq 1022
-access-list 129 deny   tcp any any eq 1023
-access-list 129 deny   udp any any eq 1434
-access-list 129 deny   udp any any eq 2048
-access-list 129 deny   tcp any any eq 2688
-access-list 129 deny   udp any any eq 4000
-access-list 129 deny   tcp any any eq 2556
-access-list 129 deny   tcp any any eq 2745
-access-list 129 deny   tcp any any eq 4444
-access-list 129 deny   tcp any any eq 4751
-access-list 129 deny   tcp any any eq 5554
-access-list 129 deny   tcp any any eq 5557
-access-list 129 deny   tcp any any eq 5556
-access-list 129 deny   tcp any any eq 9996
-access-list 129 deny   tcp any any eq 17771
-access-list 129 deny   tcp any any eq 6789
-access-list 129 deny   tcp any any eq 54112
-access-list 129 deny   tcp any any eq login
-access-list 129 deny   tcp any any eq finger
-access-list 129 deny   udp any any eq netbios-ss
-access-list 129 deny   udp any any eq netbios-ns
-access-list 129 deny   udp any any eq netbios-dgm
-access-list 129 deny   ip host 0.0.0.0 any
-access-list 129 deny   ip 127.0.0.0 0.255.255.255 any
-access-list 129 permit ip any any
-
-
-
-
-
-
-
-ln -s libdnet.1.1 libdnet.so.1.1
-ldconfig -Rv /usr/local/lib 2>&1 | grep dnet
- libtoolize --copy --force
-    aclocal -I config
-    autoheader
-    autoconf
-    automake --foreign
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
