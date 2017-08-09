@@ -1,0 +1,120 @@
+##################################
+--- >> DNS App Inspection << ---
+##################################
+!DNS application inspection utilizes the 
+!Modular Policy Framework (MPF) for configuration.! 
+!To configure application inspection, administrators may construct! 
+!an inspection policy through the configuration of inspect class maps 
+!and inspect policy maps, which are applied via a global 
+!or an interface service policy. 
+!The following example demonstrates configuration of this feature.
+
+** CONFIG **
+!
+class-map inspection_default
+match default-inspection-traffic
+!
+policy-map type inspect dns preset_dns_map
+parameters
+!
+!– Enable dns-guard to verify that DNS query and response transaction IDs match and only one ! DNS response is allowed through the firewall for each query.
+!
+dns-guard
+!
+!– Enable id-randomization to generate unpredictable DNS transaction IDs in !DNS messages and protect DNS servers and resolvers with poor randomization of !DNS transaction IDs.
+!
+id-randomization
+!
+!– Enable a maximum message length to help defeat DNS amplification attacks. Note: This is the ! default configuration and value based on RFC 1035.
+!
+message-length maximum 512
+!
+!– Enable id-mismatch to count DNS transaction ID mismatches within a specified period of time !and generate a syslog when the defined threshold has been reached.
+!
+id-mismatch count 10 duration 2 action log
+exit
+!
+!– Check for DNS query messages with the recursion desired (RD) flag set in the DNS header !and drop those packets to avoid being used as a recursive resolver.
+
+match header-flag RD
+drop
+!
+policy-map global_policy
+class inspection_default
+inspect dns preset_dns_map
+!
+service-policy global_policy global
+
+#########################################
+--- >> DNS Attack Identification << ---
+#########################################
+
+!DNS Service Policy Identification
+!When the DNS guard, DNS ID randomization, DNS ID mismatch, 
+!and DNS protocol enforcement functions 
+!for the DNS application inspection feature are enabled, 
+!the *show service-policy inspect* 
+!command will identify the number of DNS packets inspected or dropped! 
+!by these functions and this feature. 
+!Example output for show service-policy inspect dns follows
+
+!– Output for service-policy applied globally
+!
+firewall# show service-policy inspect dns
+
+Global policy:
+Service-policy: global_policy
+Class-map: inspection_default
+Inspect: dns preset_dns_map, packet 37841, drop 0, reset-drop 0
+message-length maximum 512, drop 0
+dns-guard, count 21691
+protocol-enforcement, drop 0
+nat-rewrite, count 0
+id-randomization, count 21856
+id-mismatch count 10 duration 2, log 2
+firewall#
+
+!– Output for service-policy applied per interface
+!
+firewall# show service-policy inspect dns
+
+Interface outside:
+Service-policy: global_policy
+Class-map: inspection_default
+Inspect: dns preset_dns_map, packet 4923, drop 1544, reset-drop 0
+message-length maximum 512, drop 39
+dns-guard, count 2147
+protocol-enforcement, drop 542
+nat-rewrite, count 0
+id-randomization, count 2220
+id-mismatch count 10 duration 2, log 1
+
+Interface inside:
+Service-policy: global_policy
+Class-map: inspection_default
+Inspect: dns preset_dns_map, packet 240, drop 0, reset-drop 0
+message-length maximum 512, drop 0
+dns-guard, count 88
+protocol-enforcement, drop 0
+nat-rewrite, count 0
+id-randomization, count 116
+id-mismatch count 10 duration 2, log 0
+firewall#
+Syslog Identification
+
+In the following example, the show logging | grep regex command extracts syslog messages from the logging buffer on the firewall. These messages provide additional information about denied packets. It is possible to use different regular expressions with the grep keyword to search for specific data in the logged messages.
+
+Firewall syslog message 410002 will be generated when the firewall detects a high rate of DNS responses with a mismatched DNS transaction ID. The threshold for this function is set by the id-mismatch parameters submode command for policy-map type inspect dns. Additional information about this syslog message is available in Cisco Security Appliance System Log Message - 410002.
+
+Firewall syslog message 106007 will be generated when the firewall detects that a DNS response message has already been received for a DNS query message and the connection entry has been torn down by the DNS guard function. This syslog message indicates that the DNS response message received has been denied. Additional information about this syslog message is available in Cisco Security Appliance System Log Message - 106007.
+
+Additional information about regular expression syntax is available in Using the Command Line Interface.
+
+
+      firewall#Ashow logging | grep (106007|410002)
+      Mar 31 2008 00:29:18: %ASA-2-410002: Dropped 189 DNS responses with
+        mis-matched id in the past 10 second(s): from outside:192.0.2.2/3917
+        to inside:192.168.60.1/53
+      Mar 31 2008 00:29:13: %ASA-2-106007: Deny inbound UDP from 192.0.2.2/2875
+        to 192.168.60.1/53 due to DNS Response.
+      firewall#
