@@ -1,0 +1,58 @@
+########################
+ACL for Branch 
+(most common examples)
+########################
+
+common ACL to prevent attack by malware or virus on Cisco device.
+- can be safely deployed on SO/HO routers that are not using FireWalls (PIX,ASA ..)
+
+access-list 121 deny   udp any any eq 135
+access-list 121 deny   tcp any any eq 135
+access-list 121 deny   tcp any any eq 137
+access-list 121 deny   tcp any any eq 138
+access-list 121 deny   tcp any any eq 139
+!
+!ransomware spreading through EMEA, APAC and USA
+!by above you block NetBios port communication
+!
+access-list 121 deny   udp any any eq 445
+access-list 121 deny   tcp any any eq 445
+access-list 121 deny   tcp any any eq 777
+access-list 121 deny   tcp any any eq 778
+access-list 121 deny   tcp any any eq 707
+access-list 121 deny   udp any any eq 666
+access-list 121 deny   tcp any any eq 1022
+access-list 121 deny   tcp any any eq 1023
+access-list 121 deny   udp any any eq 1434
+access-list 121 deny   udp any any eq 2048
+access-list 121 deny   tcp any any eq 2688
+access-list 121 deny   udp any any eq 4000
+access-list 121 deny   tcp any any eq 2556
+access-list 121 deny   tcp any any eq 2745
+access-list 121 deny   tcp any any eq 4444
+access-list 121 deny   tcp any any eq 4751
+access-list 121 deny   tcp any any eq 5554
+access-list 121 deny   tcp any any eq 5557
+access-list 121 deny   tcp any any eq 5556
+access-list 121 deny   tcp any any eq 9996
+access-list 121 deny   tcp any any eq 17771
+access-list 121 deny   tcp any any eq 6789
+access-list 121 deny   tcp any any eq 54112
+access-list 121 deny   tcp any any eq login
+access-list 121 deny   tcp any any eq finger
+access-list 121 deny   udp any any eq netbios-ss
+access-list 121 deny   udp any any eq netbios-ns
+access-list 121 deny   udp any any eq netbios-dgm
+access-list 121 deny   ip host 0.0.0.0 any
+access-list 121 deny   ip 127.0.0.0 0.255.255.255 any
+access-list 121 permit ip any any
+!
+
+!do not forget that **by default** 
+!all ACL's are ending by deny ip any any (!!!)
+!
+
+
+
+
+
