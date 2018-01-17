@@ -2,7 +2,7 @@
 ## Planning & Execution
 
 – The network engineering team identifies the need for a network upgrade
-*Planning is the first step*
+> *Planning is the first step*
 
 **Methodologies / Templates**
  –The Cisco Lifecycle Services 
