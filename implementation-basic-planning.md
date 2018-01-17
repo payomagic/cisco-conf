@@ -19,8 +19,7 @@
 - [ ] Verification and testing
 
 ### **Phase 3: Documentation**
-
-- [ ] Network diagram/ information
+- [ ] Network diagram with necessary information
 - [ ] Network Equipment
 - [ ] Current configurations
 - [ ] Known issues
@@ -29,6 +28,8 @@
 - [ ] Monitoring and management utilities
 - [ ] Photograps and Screencaps
 
+
 - [x] Documentation must become who you are
 - [x] Documentation is a depreciating asset
 - [x] Use a checklist to verify all steps had been done
+
