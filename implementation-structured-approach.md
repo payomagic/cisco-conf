@@ -1,4 +1,4 @@
-# Structured approach to Implementation 
+# Structured approach to Implementation
 
 ## Planning & Execution
 
@@ -6,12 +6,13 @@
 > *Planning is the first step*
 
 ### **Methodologies / Templates**
-* The Cisco Lifecycle Services 
+* The Cisco Lifecycle Services
 * IT Infrastructure Library (ITIL)
 * The Fault, Configuration, Accounting, Performance, and Security  (FCAPS) model
 * The Telecommunications Management Network (TMN) model
 
-> After all the requirements, models, and tools have been defined and collected >> the implementation plan can be created.
+> After all the requirements, models, and tools have been defined and collected
+> the implementation plan can be created.
 
 ### **Creating an Implementation Plan (based on PPDIOO model)**
 
@@ -27,12 +28,12 @@
 
 ## **Before implementing**
 
-Collect together all the information about your network such as: 
+Collect together all the information about your network such as:
 - IP Addresses + subnets
 - Network Blueprints
 - Contacts
 - Photos (if applicable)
-- Serial Numbers / Contracts / Ownership 
+- Serial Numbers / Contracts / Ownership
 - Software Versions & Revisions installed
 - Additional Hardware
 - Network dependencies
@@ -42,29 +43,30 @@ Collect together all the information about your network such as:
 - activities / servicies that might get affected by a *failed implementation*
 - people responsible for devices & people who are going to perform the implementation changes
 - Time Schedules and Time Tables / Timeline with Short Description of the steps
-- Contact Information - together with Implementation Plan Order list 
-> During the executing and applying phases will all the information come in handy ;)
-> The following steps are **completed** during Creation and Execution of an Implementation Plan
+- Contact Information - together with Implementation Plan Order list
+- During the executing and applying phases will all the information come in handy ;)
+- The following steps are **completed** during Creation and Execution of an Implementation Plan
 
-- Planning the implementation 
-  - Do not forget to include a testing phase! 
-  - During the above and after a below step test your plan!
-  
+- Planning the implementation
+- Do not forget to include a testing phase!
+- During the above and after a below step test your plan!
+
 - Selecting the tools and resources required
 - Co-ordinating work with specialists and other people involved
-- Verifying the implementation 
+- Verifying the implementation
 - Measuring and Interpreting performance results
-  - Graphical Tools may be handy - still all need CLI inputs
+- Graphical Tools may be handy -- still all apps need CLI Raw data-inputs
 - Documenting the baseline, performance, and recommendations
 
-### **Site-specific Tasks** 
-> Implementation plan may include the following steps
+### **Site-specific Tasks**
+> Implementation plan may include the following steps, but always consider per-case
 
-• Identifying applications and devices to be implemented
-• Creating installation tasks and checklists
-• Defining device configuration and software requirements
-• Creating site-specific device configurations, installation tasks, and checklists
-• Creating installation verification tests
+* Identifying applications and devices to be implemented
+* Creating installation tasks and checklists
+* Defining device configuration and software requirements
+* Creating site-specific device configurations, installation tasks, and checklists
+* Creating installation verification tests
+
 
 
 # Create & Follow the Implementation Plan
