@@ -1,4 +1,5 @@
-# Structured approach to Implementation Planning & Execution
+# Structured approach to Implementation 
+## Planning & Execution
 
 – The network engineering team identifies the need for a network upgrade
 *Planning is the first step*
