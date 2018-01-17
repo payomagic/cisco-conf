@@ -5,12 +5,12 @@
 > *Planning is the first step*
 
 **Methodologies / Templates**
- –The Cisco Lifecycle Services 
- –IT Infrastructure Library (ITIL)
- – The Fault, Configuration, Accounting, Performance, and Security  (FCAPS) model
- – The Telecommunications Management Network (TMN) model
+* The Cisco Lifecycle Services 
+* IT Infrastructure Library (ITIL)
+* The Fault, Configuration, Accounting, Performance, and Security  (FCAPS) model
+* The Telecommunications Management Network (TMN) model
 
-After all the requirements, models, and tools have been defined and collected >> the implementation plan can be created.
+> After all the requirements, models, and tools have been defined and collected >> the implementation plan can be created.
 
 **Creating an Implementation Plan (based on PPDIOO model)**
 
@@ -25,24 +25,30 @@ Step 2. Implement and verify the design
 Step 3. Monitor and optionally redesign (request for changes)
 
 **Before implementing:**
+> important 
+Collect together all the information about your network ( such as: IP Addresses + subnets, Network Blueprints, Contacts, Photos ...)
 > important
-- collect together all the information about your network ( such as: IP Addresses + subnets, Network Blueprints, 
 
-*Dependencies*
+**Dependencies**
 - activities / servicies that might be affected from a bad implementation
 - people who will perform the implementation steps
 - schedules and time tables
-- contact information - together with Implementation Plan order list -- during executing all the information in handy.
+- contact information - together with Implementation Plan Order list 
+> during the executing and applying phases will all the information come in handy ;)
 
-The following steps are **completed** during creation and execution of an implementation plan:
-• Planning the implementation
+The following steps are **completed**
+  - during Creation and Execution of an Implementation Plan
+• Planning the implementation 
+> Do not forget to include a testing phase! 
+> During the above and after a below step test your plan!
 • Selecting the tools and resources required
-• Coordinating work with specialists
+• Co-ordinating work with specialists
 • Verifying the implementation
 • Interpreting performance results
 • Documenting the baseline, performance, and recommendations
 
-**Site-specific Tasks** in implementation plan may include the following:
+**Site-specific Tasks** 
+  - in implementation plan may include the following:
 • Identifying applications and devices to be implemented
 • Creating installation tasks and checklists
 • Defining device configuration and software requirements
@@ -51,7 +57,6 @@ The following steps are **completed** during creation and execution of an implem
 
 
 # Create & Follow the Implementation Plan
-
 ## Basic Planning Phases
 
 ### **Phase 1 : Necessary Information / Data**
@@ -82,5 +87,13 @@ The following steps are **completed** during creation and execution of an implem
 [] Monitoring and management utilities
 [] Photograps and Screencaps
 
-[] Documentation must become who you are
-[] Documentation is a depreciating asset
+[x] Documentation must become who you are
+[x] Documentation is a depreciating asset
+[x] Use a checklist to verify all steps had been done
+
+
+
+
+
+
+
