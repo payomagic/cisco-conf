@@ -1,10 +1,11 @@
 # Structured approach to Implementation 
+
 ## Planning & Execution
 
 – The network engineering team identifies the need for a network upgrade
 > *Planning is the first step*
 
-**Methodologies / Templates**
+### **Methodologies / Templates**
 * The Cisco Lifecycle Services 
 * IT Infrastructure Library (ITIL)
 * The Fault, Configuration, Accounting, Performance, and Security  (FCAPS) model
@@ -12,20 +13,19 @@
 
 > After all the requirements, models, and tools have been defined and collected >> the implementation plan can be created.
 
-**Creating an Implementation Plan (based on PPDIOO model)**
+### **Creating an Implementation Plan (based on PPDIOO model)**
 
-1. Identify customer requirements.
-2.  Characterize the existing network and sites. ( Existing environment)
-3.  Design the network topology and solutions.
+1.  Identify customer requirements.
+2.  Characterize the existing network, sites, devices & technologies ( Existing environment)
+3.  Design the new network topology and solutions
 
-**Implementation process is executed**
+### **Implementation process is executed**
 
 1. Plan the implementation
 2. Implement and verify the design
-3. Monitor and optionally Re-Design (Request for Changes / CRF)
+3. Monitor and optionally Redesign (Request for Changes / CRF)
 
-**Before implementing**
-> important 
+## **Before implementing**
 
 Collect together all the information about your network such as: 
 - IP Addresses + subnets
@@ -38,7 +38,7 @@ Collect together all the information about your network such as:
 - Network dependencies
 - Critical Infrastructure Points
 
-**Dependencies**
+### **Dependencies**
 - activities / servicies that might get affected by a *failed implementation*
 - people responsible for devices & people who are going to perform the implementation changes
 - Time Schedules and Time Tables / Timeline with Short Description of the steps
@@ -46,18 +46,19 @@ Collect together all the information about your network such as:
 > During the executing and applying phases will all the information come in handy ;)
 > The following steps are **completed** during Creation and Execution of an Implementation Plan
 
-• Planning the implementation 
+- Planning the implementation 
   - Do not forget to include a testing phase! 
   - During the above and after a below step test your plan!
   
-• Selecting the tools and resources required
-• Co-ordinating work with specialists and other people involved
-• Verifying the implementation 
-• Measuring and Interpreting performance results
-• Documenting the baseline, performance, and recommendations
+- Selecting the tools and resources required
+- Co-ordinating work with specialists and other people involved
+- Verifying the implementation 
+- Measuring and Interpreting performance results
+  - Graphical Tools may be handy - still all need CLI inputs
+- Documenting the baseline, performance, and recommendations
 
-**Site-specific Tasks** 
-> in implementation plan may include the following
+### **Site-specific Tasks** 
+> Implementation plan may include the following steps
 
 • Identifying applications and devices to be implemented
 • Creating installation tasks and checklists
@@ -71,35 +72,36 @@ Collect together all the information about your network such as:
 
 ### **Phase 1 : Necessary Information / Data**
 
-[] Accurate Network Diagram
-[] IP Address Diagram / Spreadsheet
-[] Configuration Commands
-[] Hardware Required
-[] Equipment List
-[] Link Utilization
-[] Timeline
-[] Relevant Contact information (Cisco TAC, LCON/LPOC, Consultants, NOC, COE, Specialists ...)
+[ ] Accurate Network Diagram
+[ ] IP Address Diagram / Spreadsheet
+[ ] Configuration Commands
+[ ] Hardware Required
+[ ] Equipment List
+[ ] Link Utilization
+[ ] Timeline
+[ ] Relevant Contact information (Cisco TAC, LCON/LPOC, Consultants, NOC, COE, Specialists ...)
 
 ### **Phase 2: Implementation Plan**
-[] Identify devices and tasks (check list)
-[] List necessary software version
-[] List configuration
-[] Verification and testing
+[ ] Identify devices and tasks (check list)
+[ ] List necessary software version
+[ ] List configuration
+[ ] Verification and testing
 
 ### **Phase 3: Documentation**
 
-[] Network diagram/ information
-[] Network Equipment
-[] Current configurations
-[] Known issues
-[] Network performance baseline
-[] Verification commands and results
-[] Monitoring and management utilities
-[] Photograps and Screencaps
+[ ] Network diagram/ information
+[ ] Network Equipment
+[ ] Current configurations
+[ ] Known issues
+[ ] Network performance baseline
+[ ] Verification commands and results
+[ ] Monitoring and management utilities
+[ ] Photograps and Screencaps
 
 [x] Documentation must become who you are
 [x] Documentation is a depreciating asset
 [x] Use a checklist to verify all steps had been done
+
 
 
 
