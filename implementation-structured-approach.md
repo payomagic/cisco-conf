@@ -40,12 +40,16 @@ Collect together all the information about your network such as:
 - Critical Infrastructure Points
 
 ### **Dependencies**
-- activities / servicies that might get affected by a *failed implementation*
+- activities / services that might get affected in a case of *Failed Scheduled Implementation*
 - people responsible for devices & people who are going to perform the implementation changes
-- Time Schedules and Time Tables / Timeline with Short Description of the steps
-- Contact Information - together with Implementation Plan Order list
-- During the executing and applying phases will all the information come in handy ;)
-- The following steps are **completed** during Creation and Execution of an Implementation Plan
+- Time Schedules and Time Tables 
+  - Timeline with Short Description of the steps
+- Contact Information 
+  - Always list Contact Details in more places 
+  - together with Implementation Plan Tasks Overview
+  - add them in Task Details as well
+  - all the information will come in handy and always needed quickly ;)
+> The following steps are **completed** during Creation and Execution of an Implementation Plan
 
 - Planning the implementation
 - Do not forget to include a testing phase!
@@ -67,39 +71,3 @@ Collect together all the information about your network such as:
 * Creating site-specific device configurations, installation tasks, and checklists
 * Creating installation verification tests
 
-
-
-# Create & Follow the Implementation Plan
-## Basic Planning Phases
-
-### **Phase 1 : Necessary Information / Data**
-
-- [ ] Accurate Network Diagram
-- [ ] IP Address Diagram / Spreadsheet
-- [ ] Configuration Commands
-- [ ] Hardware Required
-- [ ] Equipment List
-- [ ] Link Utilization
-- [ ] Timeline
-- [ ] Relevant Contact information (Cisco TAC, LCON/LPOC, Consultants, NOC, COE, Specialists ...)
-
-### **Phase 2: Implementation Plan**
-- [ ] Identify devices and tasks (check list)
-- [ ] List necessary software version
-- [ ] List configuration
-- [ ] Verification and testing
-
-### **Phase 3: Documentation**
-
-- [ ] Network diagram/ information
-- [ ] Network Equipment
-- [ ] Current configurations
-- [ ] Known issues
-- [ ] Network performance baseline
-- [ ] Verification commands and results
-- [ ] Monitoring and management utilities
-- [ ] Photograps and Screencaps
-
-- [x] Documentation must become who you are
-- [x] Documentation is a depreciating asset
-- [x] Use a checklist to verify all steps had been done
