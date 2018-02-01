@@ -1,0 +1,49 @@
+Kroky vytvoření webových stránek
+1. Příprava
+
+    -- Kontrola konkurence
+
+    Podíváme se na úspěšné, ale i neúspěšné konkurenční www stránky , 
+    vyhodnotíme rozdíly mezi nimi a zjistíme proč jsou některé stránky úspěšné a jiné méně. 
+    Analýzou klíčových slov a slovních spojení získáme potřebnou inspiraci.
+    
+    -- Výběr správného názvu webových stránek
+
+    Název www stránek může propagovat značku, konkrétní výrobek, nebo obecný název, záleží na účelu. 
+    Pokud si vyberete Vám vyhovující název, je potřeba myslet na konkurenci 
+    a pokud je název dvouslovný (př.: www.tvnova.cz) vyhodnotit, zda nebude nutné koupit 
+    také doménu rozdělenou pomlčkou (př.: www.tv-nova.cz), nebo s jinou koncovkou (.sk, .com, …).
+    
+    -- Osnova webových stránek
+
+    V bodech si připravíme obsah webových stránek (hlavní a vedlejší zaměření s návaznostmi).
+    
+    -- Funkce www stránek
+
+    Sepsat seznam funkcí, které mají webové stránky obsahovat (př.: poptávkový, dotazový, formulář, obrázková animace, přímé odkazy na webové stránce, diskusní fóra, komentáře, ankety, …)
+    
+    -- Připravení kompletního obsahu
+
+    Kolik bude menu (mohou být 2 i více), kolik položek v menu. 
+    Obsah jednotlivých podstránek, odstavce, hlavní a vedlejší nadpisy a seznamy. 
+    Logo ve formátu PNG, obrázky pro galerie, ale i podstatné dokumenty.
+
+
+2. Grafika a kódování
+
+Jakmile je zadání kompletní, provedeme korekturu textů a optimalizaci grafiky. 
+Můžete si vybrat, jakým způsobem bude získána grafika webových stránek. 
+Jedna možnost je využití již vytvořených webových šablon (více zde…), 
+druhou možností je vytvoření originálního grafického návrhu - v tomto případě lze zahrnout také logotyp případně kompletní
+Branch Identity -- bližší info. 
+Zákazníkem schválený design plně naprogramujeme a provedeme SEO optimalizaci 
+(optimalizaci webových stránek pro vyhledávače -- Seznam.cz + google.cz
+
+4. Zkušební provoz a dokončení
+
+Při předání je důležité provést důkladnou kontrolu vytvořených www stránek.
+Zkušební provoz trvá obvykle týden až měsíc / dle rozsahu a také dle případných změn.
+
+5. Spolupráce
+V případě zájmu o správu webu se nadále věnujeme např. SEO – optimalizaci či doplňování a pozměňování obsahu.
+
