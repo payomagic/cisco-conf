@@ -1,0 +1,73 @@
+#!Cisco Split DNS - router config
+
+The Split DNS feature enables a Cisco router to respond to Domain Name System (DNS) queries.
+In a Split DNS environment, multiple DNS databases can be configured on the router. 
+
+
+
+ip domain lookup
+    ip domain timeout 2
+    ip domain name office.local
+    ip name-server 8.8.8.8
+    ip name-server 8.8.4.4
+    ip dns server
+!
+    ip dns view no_dns_service_view
+     no domain lookup	
+     no dns forwarding
+!
+    ip dns view default
+     domain timeout 2
+     dns forwarder 8.8.8.8
+!
+    ip dns view-list no_dns_service_list
+     view no_dns_service_view 1
+!
+    interface fa0/0
+     ip dns view-group no_dns_service_list
+ !    
+  !   
+   
+   
+   ------------------------------------------------------------------
+   1. configure the default DNS -- Use i.e.: Google DNS + Cloudflare
+
+ip name-server 8.8.8.8
+ip name-server 1.1.1.1
+
+  2. configure DNS views -- determine which DNS resolvers it forwards. 
+  Let's build a 2 views - one pointing to Unblock-US and second we use for all other requests 
+  >> adjust the DNS view to suits you and yours environment.
+
+ip dns view default
+ dns forwarder 8.8.8.8
+ dns forwarder 1.1.1.1
+ip dns view unblockus
+ dns forwarder 111.118.175.56
+ dns forwarder 118.127.33.48
+
+
+3. Domains that you want to use with your non-default DNS view. 
+i.e.: let's forward Netflix to Unblock-US : 
+
+ip dns name-list 1 permit .*.NETFLIX.COM
+ip dns name-list 1 permit .*.UNBLOCK-US.COM
+ip dns name-list 1 permit .*.US-WEST-9.ELB.AMAZONAWS.COM
+
+>> extra DNS views needs an extra DNS name-lists with a raising ID.
+
+4. DNS view-list >> forwards requests based on the name list. 
+Anything that doesn’t match a name list is forwarded to the default.
+
+ip dns view-list primary
+ view unblockus 10
+  restrict name-group 1
+ view default 100
+
+5. Last config needed is to set router to use the view-list defined above 
+and activating the DNS service.
+
+ip dns server view-group primary
+ip dns server
+
+Adjust to suit as needed >> and you have a split DNS!!
