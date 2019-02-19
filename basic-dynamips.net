@@ -1,0 +1,30 @@
+[localhost:7200]
+    workingdir = /home/administrator/dynamips-working
+    autostart = false
+    ghostios = true
+    sparsemem = true
+
+    [[7200]]
+        image = /home/administrator/IOS/c7200-adventerprisek9-mz.152-4.M11.bin
+        disk0 = 128
+        mmap = False
+	npe = npe-400
+	slot0 = C7200-IO-FE
+	slot1 = PA-FE-TX
+        slot3 = PA-4T+
+	ram = 512
+
+    [[3725]]
+	image = /home/administrator/IOS/c3725-adventerprisek9-mz124-15.image
+	disk0 = 64
+	ram = 128
+	
+    [[ROUTER R0]]
+        model = 7200
+	console = 2010
+        f0/0 = nio_tap:tap0
+        f1/0 = R1 f0/0
+
+    [[ROUTER R1]]
+	model = 3725
+	console = 2011
