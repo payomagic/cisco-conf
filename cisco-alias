@@ -1,0 +1,39 @@
+Cisco Aliases
+--------------
+Example :
+router(config)#alias exec sr show run  
+
+================================================
+# Get into configuration mode
+conf t
+# Create new aliases
+alias exec sbn show ip bgp neighbor
+alias exec sb show ip bgp
+alias exec sbs show ip bgp sum
+alias exec cb clear ip bgp * soft
+alias exec cbh clear ip bgp *
+alias exec sbgp show run | begin router bgp
+alias exec seigrp show run | begin router eigrp
+alias exec sospf show run | begin router ospf
+alias exec srip show run | begin router rip
+alias exec sisis show run | begin router isis
+alias exec sr show run
+alias exec sii show ip interface biref
+alias exec sal show access-list
+alias exec set show ip eigrp topology
+alias exec sod show ip ospf database
+alias exec srd show ip rip database
+alias exec c conf t
+alias exec cir clear ip route *
+alias exec sir show ip route
+alias exec son show ip ospf neighbor
+alias exec sen show ip eigrp neighbor
+alias exec sv show version
+alias exec ss show startup-config
+alias exec sf show flash
+alias exec si show interface
+alias exec scdpn show cdp neighbor detail 
+exit
+
+# Issue your command 
+router#si
