@@ -1,0 +1,24 @@
+========================================
+	TACACS+ Server Config Linux
+========================================
+
+key = "key2tac-serveR"
+
+group = admins {
+default service = permit
+service = exec {
+priv-lvl = 15
+    }
+}
+#Default User
+
+user = administrator {
+member = admins
+login = des DesEncryptedPassword
+}
+
+#Enable Passworde Priv 15
+
+user = $enab15$ {
+    login = des DesEncryptedENABLE
+}
