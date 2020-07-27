@@ -1,12 +1,14 @@
-	==========================================
-	 ### Bridge TAP Dynamips to Linux Internet
-	==========================================
 	
-	Create a TAp device (user running dynamips):
-	```
-	tunctl -u username
-	```
-	assign an ip address to the tap0 interface 
+ ### Bridge TAP Dynamips (GNS3) to Linux Internet
+	
+==================================
+	
+Create a TAp device (user running dynamips):
+```
+tunctl -u username
+```
+
+assign an ip address to the tap0 interface 
   ```
   ifconfig tap0 10.123.1.1 netmask 255.255.255.0 up
   ```
